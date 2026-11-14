@@ -16,3 +16,8 @@ jobs:
     steps:
       - name: Synthetic step
         run: echo "synthetic step, no data, no secrets"
+      - name: Report own check run id
+        env:
+          KENNUNG: ${{ job.check_run_id }}
+          KOPF: ${{ github.event.pull_request.head.sha }}
+        run: echo "EIGENMELDUNG pruefname=DGH Gate kennung=${KENNUNG} lauf=${GITHUB_RUN_ID} versuch=${GITHUB_RUN_ATTEMPT} commit=${GITHUB_SHA} kopf=${KOPF} ereignis=${GITHUB_EVENT_NAME}"
